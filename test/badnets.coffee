@@ -1,6 +1,5 @@
 vows = require 'vows'
 assert = require 'assert'
-util = require 'util'
 Netmask = require('../lib/netmask').Netmask
 
 shouldFailWithError = (msg) ->
@@ -11,13 +10,15 @@ shouldFailWithError = (msg) ->
             catch e
                 return e
         'should fail': (e) ->
-            assert.ok util.isError(e), 'is an Error object'
+            assert.ok isError(e), 'is an Error object'
 
     context["with error `#{msg}'"] = (e) ->
         assert.ok e.message?.toLowerCase().indexOf(msg.toLowerCase()) > -1, "'#{e.message}' =~ #{msg}"
 
     return context
 
+isError = (e) ->
+    return typeof e is 'object' and Object.prototype.toString.call e is '[object Error]'
 
 vows.describe('IPs with bytes greater than 255')
     .addBatch
