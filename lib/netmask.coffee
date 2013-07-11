@@ -37,10 +37,12 @@ class Netmask
                 if @maskLong == (0xffffffff << (32 - i)) >>> 0
                     @bitmask = i
                     break
-        else
+        else if mask
             # The mask was passed as bitmask, compute the mask as long from it
             @bitmask = parseInt(mask, 10)
             @maskLong = (0xffffffff << (32 - @bitmask)) >>> 0
+        else
+            throw new Error("Invalid mask: empty")
 
         try
             @netLong = (ip2long(net) & @maskLong) >>> 0
