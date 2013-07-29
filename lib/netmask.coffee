@@ -77,6 +77,11 @@ class Netmask
     next: (count=1) ->
         return new Netmask(long2ip(@netLong + (@size * count)), @mask)
 
+    # Returns the complete netmask formatted as `base/bitmask`
+    toString: ->
+        return @base + "/" + @bitmask
+
+
 exports.ip2long = ip2long
 exports.long2ip = long2ip
 exports.Netmask = Netmask

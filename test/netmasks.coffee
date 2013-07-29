@@ -29,6 +29,7 @@ for fixture in fixtures
     context["base is `#{base}'"] = (block) -> assert.equal block.base, base
     context["mask is `#{newmask}'"] = (block) -> assert.equal block.mask, newmask
     context["bitmask is `#{bitmask}'"] = (block) -> assert.equal block.bitmask, bitmask
+    context["toString is `#{base}/`#{bitmask}'"] = (block) -> assert.equal block.toString(), block.base + "/" + block.bitmask
     contexts["for #{addr}" + (if mask then " with #{mask}" else '')] = context
 
 vows.describe('Netmaks parsing').addBatch(contexts).export(module)
@@ -49,6 +50,7 @@ vows.describe('Netmask contains IP')
             'contains block 192.168.1.128/25': (block) -> assert.ok block.contains('192.168.1.128/25')
             'does not contain block 192.168.1.0/23': (block) -> assert.ok not block.contains('192.168.1.0/23')
             'does not contain block 192.168.2.0/24': (block) -> assert.ok not block.contains('192.168.2.0/24')
+            'toString equals 192.168.1.0/24': (block) -> assert.equal block.toString(), '192.168.1.0/24'
         'block 192.168.0.0/24':
             topic: -> new Netmask('192.168.0.0/24')
             'does not contain block 192.168': (block) -> assert.ok not block.contains('192.168')
