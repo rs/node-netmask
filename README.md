@@ -22,7 +22,7 @@ Synopsis
     block.contains('10.8.0.10');    // false
     block.contains('192.168.1.20'); // false
 
-    block.netx()                    // Netmask('10.16.0.0/12')
+    block.next()                    // Netmask('10.16.0.0/12')
 
 Constructing
 ------------
