@@ -77,6 +77,10 @@ class Netmask
     next: (count=1) ->
         return new Netmask(long2ip(@netLong + (@size * count)), @mask)
 
+    forEach: (fn) ->
+        range = [ip2long(@first)..ip2long(@last)]
+        fn long2ip(long), long, index for long, index in range
+
     # Returns the complete netmask formatted as `base/bitmask`
     toString: ->
         return @base + "/" + @bitmask
