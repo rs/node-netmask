@@ -55,3 +55,21 @@ vows.describe('Netmask contains IP')
             topic: -> new Netmask('192.168.0.0/24')
             'does not contain block 192.168': (block) -> assert.ok not block.contains('192.168')
     .export(module)
+
+vows.describe('Netmask forEach')
+    .addBatch
+        'block 192.168.1.0/24':
+            topic: -> new Netmask('192.168.1.0/24')
+            'should loop through all ip addresses': (block) ->
+                called = 0
+                block.forEach (ip, long, index) ->
+                    called = index
+                assert.equal (called + 1), 254
+        'block 192.168.1.0/23':
+            topic: -> new Netmask('192.168.1.0/23')
+            'should loop through all ip addresses': (block) ->
+                called = 0
+                block.forEach (ip, long, index) ->
+                    called = index
+                assert.equal (called + 1), 510
+    .export(module)
