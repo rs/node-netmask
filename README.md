@@ -1,7 +1,7 @@
 Netmask
 =======
 
-The Netmask class parses and understands IPv4 CIDR blocks so they can be explorered and compared. This module is highly inspired by Perl [Net::Netmask](http://search.cpan.org/dist/Net-Netmask/) module.
+The Netmask class parses and understands IPv4 CIDR blocks so they can be explored and compared. This module is highly inspired by Perl [Net::Netmask](http://search.cpan.org/dist/Net-Netmask/) module.
 
 Synopsis
 --------
