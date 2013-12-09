@@ -16,7 +16,7 @@ ip2long = (ip) ->
 
 class Netmask
     constructor: (net, mask) ->
-        throw new Error("Missing `net' parameter") unless net
+        throw new Error("Missing `net' parameter") unless typeof net is 'string'
         unless mask
             # try to find the mask in the net (i.e.: 1.2.3.4/24 or 1.2.3.4/255.255.255.0)
             [net, mask] = net.split('/', 2)
