@@ -50,7 +50,7 @@ class Netmask
             throw new Error("Invalid net address: #{net}")
 
         throw new Error("Invalid mask for ip4: #{mask}") unless @bitmask <= 32
-          
+
         # The number of IP address in the block (eg.: 254)
         @size = Math.pow(2, 32 - @bitmask)
         # The address of the network block as a string (eg.: 216.240.32.0)
@@ -68,8 +68,9 @@ class Netmask
 
     # Returns true if the given ip or netmask is contained in the block
     contains: (ip) ->
-        if ip.indexOf('/') > 0 or ip.split('.').length isnt 4
+        if typeof ip is 'string' and (ip.indexOf('/') > 0 or ip.split('.').length isnt 4)
             ip = new Netmask(ip)
+
         if ip instanceof Netmask
             return @contains(ip.base) and @contains(ip.broadcast)
         else
