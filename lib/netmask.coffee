@@ -72,7 +72,7 @@ class Netmask
             ip = new Netmask(ip)
 
         if ip instanceof Netmask
-            return @contains(ip.base) and @contains(ip.broadcast)
+            return @contains(ip.base) and @contains((ip.broadcast || ip.last))
         else
             return (ip2long(ip) & @maskLong) >>> 0 == ((@netLong & @maskLong)) >>> 0
 
