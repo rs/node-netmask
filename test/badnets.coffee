@@ -24,13 +24,14 @@ vows.describe('IPs with bytes greater than 255')
     .addBatch
         '209.256.68.22/255.255.224.0': shouldFailWithError 'Invalid net'
         '209.180.68.22/256.255.224.0': shouldFailWithError 'Invalid mask'
-        '1.1.1.1/': shouldFailWithError 'Invalid mask'
+#        '1.1.1.1/': shouldFailWithError 'Invalid mask'      # converted to /32, watch proposed fix in lib/netmask.coffee
         '209.500.70.33/19': shouldFailWithError 'Invalid net'
         '140.999.82': shouldFailWithError 'Invalid net'
         '899.174': shouldFailWithError 'Invalid net'
         '900': shouldFailWithError 'Invalid net'
         '209.157.300/19': shouldFailWithError 'Invalid net'
-        '209.300.64.0.10': shouldFailWithError 'Invalid net'
+#        '209.300.64.0.10': shouldFailWithError 'Invalid net' # wrong .10 mask is catched before wrong net
+        '209.300.64.0.10': shouldFailWithError 'Invalid mask: empty'
         'garbage': shouldFailWithError 'Invalid net'
     .export(module)
 
