@@ -59,6 +59,9 @@ vows.describe('Netmask contains IP')
             'contains 10.1.2.10/29': (block) -> assert.ok block.contains('10.1.2.10/29')
             'contains 10.1.2.10/31': (block) -> assert.ok block.contains('10.1.2.10/31')
             'contains 10.1.2.20/32': (block) -> assert.ok block.contains('10.1.2.20/32')
+        'block 0.0.0.0/0':
+            topic: ->  new Netmask('0.0.0.0/0')
+            'contains 10.1.2.10/29': (block) -> assert.ok block.contains('10.1.2.10/29')
     .export(module)
 
 vows.describe('Netmask forEach')

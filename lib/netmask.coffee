@@ -75,6 +75,9 @@ class Netmask
 
     # Returns true if the given ip or netmask is contained in the block
     contains: (ip) ->
+        if @mask == '255.255.255.255'
+            return true
+
         if typeof ip is 'string' and (ip.indexOf('/') > 0 or ip.split('.').length isnt 4)
             ip = new Netmask(ip)
 
