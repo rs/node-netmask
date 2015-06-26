@@ -54,6 +54,14 @@ vows.describe('Netmask contains IP')
         'block 192.168.0.0/24':
             topic: -> new Netmask('192.168.0.0/24')
             'does not contain block 192.168': (block) -> assert.ok not block.contains('192.168')
+        'block 10.1.2.0/24':
+            topic: ->  new Netmask('10.1.2.0/24')
+            'contains 10.1.2.10/29': (block) -> assert.ok block.contains('10.1.2.10/29')
+            'contains 10.1.2.10/31': (block) -> assert.ok block.contains('10.1.2.10/31')
+            'contains 10.1.2.20/32': (block) -> assert.ok block.contains('10.1.2.20/32')
+        'block 0.0.0.0/0':
+            topic: ->  new Netmask('0.0.0.0/0')
+            'contains 10.1.2.10/29': (block) -> assert.ok block.contains('10.1.2.10/29')
     .export(module)
 
 vows.describe('Netmask forEach')
