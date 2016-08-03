@@ -6,6 +6,7 @@ long2ip = (long) ->
     return [a, b, c, d].join('.')
 
 ip2long = (ip) ->
+    ip = ip.substr(ip.lastIndexOf(':') + 1);
     b = (ip + '').split('.');
     if b.length is 0 or b.length > 4 then throw new Error('Invalid IP')
     for byte, i in b
