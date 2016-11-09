@@ -87,6 +87,23 @@ class Netmask
         range = [ip2long(@first)..ip2long(@last)]
         fn long2ip(long), long, index for long, index in range
 
+    toIpArray: ->
+        iRange = []
+        lRange = [ip2long(@first)..ip2long(@last)]
+        for k,v of lRange
+            iRange.push long2ip(v)
+        return iRange
+
+    toLongArray: ->
+        return [ip2long(@first)..ip2long(@last)]
+
+    toArray: ->
+        iRange = []
+        lRange = [ip2long(@first)..ip2long(@last)]
+        for k,v of lRange
+            iRange.push new Netmask(long2ip(v))
+        return iRange
+
     # Returns the complete netmask formatted as `base/bitmask`
     toString: ->
         return @base + "/" + @bitmask

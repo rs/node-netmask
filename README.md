@@ -55,6 +55,8 @@ API
 - `.contains(ip or block)`: Returns a true if the IP number `ip` is part of the network. That is, a true value is returned if `ip` is between `base` and `broadcast`. If a Netmask object or a block is given, it returns true only of the given block fits inside the network.
 - `.forEach(fn)`: Similar to the Array prototype method. It loops through all the useable addresses, ie between `first` and `last`.
 - `.next(count)`: Without a `count`, return the next block of the same size after the current one. With a count, return the Nth block after the current one. A count of -1 returns the previous block. Undef will be returned if out of legal address space.
+- `.toIpArray()`: Returns an array including all the usable addresses.
+- `.toArray()`: Returns an array of all the usable addresses as `Netmask` objects.
 - `.toString()`: The netmask in base/bitmask format (e.g., '216.240.32.0/24')
 
 Installation
