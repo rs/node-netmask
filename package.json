@@ -9,7 +9,7 @@
     "repository":
     {
         "type": "git",
-        "url": "git://github.com/rs/node-netmask.git"
+        "url": "git://github.com/jangins101/node-netmask.git"
     },
     "keywords": ["net", "mask", "ip", "network", "cidr", "netmask", "subnet", "ipcalc"],
     "main": "./lib/netmask",
