@@ -3,8 +3,8 @@
     "name": "netmask",
     "description": "Parse and lookup IP network blocks",
     "version": "1.0.6",
-    "homepage": "https://github.com/rs/node-netmask",
-    "bugs": "https://github.com/rs/node-netmask/issues",
+    "homepage": "https://github.com/jangins101/node-netmask",
+    "bugs": "https://github.com/jangins101/node-netmask/issues",
     "license": "MIT",
     "repository":
     {
