@@ -92,6 +92,7 @@ class Netmask
           fn long2ip(long), long, index
           index++
           long++
+        return
 
     # Returns the complete netmask formatted as `base/bitmask`
     toString: ->
