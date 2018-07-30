@@ -84,8 +84,15 @@ class Netmask
         return new Netmask(long2ip(@netLong + (@size * count)), @mask)
 
     forEach: (fn) ->
-        range = [ip2long(@first)..ip2long(@last)]
-        fn long2ip(long), long, index for long, index in range
+        # this implementation is not idiomatic but avoids large memory allocations (2 arrays, one for range and one for the results) in cases when then netmask is large
+        long=ip2long(@first)
+        lastLong=ip2long(@last)
+        index=0
+        while long<=lastLong
+          fn long2ip(long), long, index
+          index++
+          long++
+        return
 
     # Returns the complete netmask formatted as `base/bitmask`
     toString: ->
