@@ -9,8 +9,14 @@ ip2long = (ip) ->
     b = (ip + '').split('.');
     if b.length is 0 or b.length > 4 then throw new Error('Invalid IP')
     for byte, i in b
-        if isNaN parseInt(byte, 10) then throw new Error("Invalid byte: #{byte}")
+        if byte and byte[0] == '0'
+            # make sure 0 prefixed bytes are parsed as octal
+            byte = parseInt(byte, 8)
+        else
+            byte = parseInt(byte, 10)
+        if isNaN(byte) then throw new Error("Invalid byte: #{byte}")
         if byte < 0 or byte > 255 then throw new Error("Invalid byte: #{byte}")
+        b[i] = byte
     return ((b[0] or 0) << 24 | (b[1] or 0) << 16 | (b[2] or 0) << 8 | (b[3] or 0)) >>> 0
 
 
