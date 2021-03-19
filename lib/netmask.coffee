@@ -9,6 +9,8 @@ ip2long = (ip) ->
     b = (ip + '').split('.');
     if b.length is 0 or b.length > 4 then throw new Error('Invalid IP')
     for byte, i in b
+        # disable hexadecimal input
+        if /\D/.test(byte) then throw new Error("Invalid byte: #{byte}")
         if byte and byte[0] == '0'
             # make sure 0 prefixed bytes are parsed as octal
             byte = parseInt(byte, 8)
