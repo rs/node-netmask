@@ -21,7 +21,9 @@ ip2long = (ip) ->
         if isNaN(byte) then throw new Error("Invalid byte: #{byte}")
         if byte < 0 or byte > 255 then throw new Error("Invalid byte: #{byte}")
         b[i] = byte
-    return ((b[0] or 0) << 24 | (b[1] or 0) << 16 | (b[2] or 0) << 8 | (b[3] or 0)) >>> 0
+    while b.length < 4
+        b.unshift(0)
+    return (b[0] << 24 | b[1] << 16 | b[2] << 8 | b[3]) >>> 0
 
 
 class Netmask
@@ -31,13 +33,7 @@ class Netmask
             # try to find the mask in the net (i.e.: 1.2.3.4/24 or 1.2.3.4/255.255.255.0)
             [net, mask] = net.split('/', 2)
         unless mask
-            switch net.split('.').length
-                when 1 then mask = 8
-                when 2 then mask = 16
-                when 3 then mask = 24
-                when 4 then mask = 32
-                else throw new Error("Invalid net address: #{net}")
-
+            mask = 32
         if typeof mask is 'string' and mask.indexOf('.') > -1
             # Compute bitmask, the netmask as a number of bits in the network portion of the address for this block (eg.: 24)
             try
@@ -48,7 +44,7 @@ class Netmask
                 if @maskLong == (0xffffffff << (32 - i)) >>> 0
                     @bitmask = i
                     break
-        else if mask
+        else if mask or mask == 0
             # The mask was passed as bitmask, compute the mask as long from it
             @bitmask = parseInt(mask, 10)
             @maskLong = 0

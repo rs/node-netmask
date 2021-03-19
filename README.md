@@ -36,11 +36,9 @@ Netmask objects are created with an IP address and optionally a mask. There are 
     '216.240.32.0', '255.255.255.0'
     '216.240.32.0', 0xffffff00
     '216.240.32.4'                  // A /32 block.
-    '216.240.32'                    // A /24 block.
-    '216.240'                       // A /16 block.
-    '140'                           // A /8 block.
-    '216.240.32/24'
-    '216.240/16'
+    '0330.0360.040.04'              // Octal form
+    '0xd8.0xf0.0x20.0x4'            // Hex form
+
 
 API
 ---
@@ -67,7 +65,7 @@ License
 
 (The MIT License)
 
-Copyright (c) 2011 Olivier Poitrey <rs@dailymotion.com>
+Copyright (c) 2011 Olivier Poitrey <rs@rhapsodyk.net>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
