@@ -23,13 +23,14 @@
     "main": "./lib/netmask",
     "scripts": {
         "prepublish": "coffee -c lib/*.coffee",
-        "test": "vows --spec test/*"
+        "test": "coffee -c lib/*.coffee && vows --spec test/* && mocha tests/*"
     },
     "engines": {
         "node": ">= 0.4.0"
     },
     "devDependencies": {
         "coffee-script": ">=1.2.0",
+        "mocha": "^8.3.2",
         "vows": "*"
     }
 }

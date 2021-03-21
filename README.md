@@ -60,6 +60,11 @@ Installation
 
     $ npm install netmask
 
+Run all tests (vows plus mocha)
+-------------------------------
+
+    $ npm test
+
 License
 -------
 
