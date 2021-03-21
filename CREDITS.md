@@ -27,4 +27,4 @@ These credits refer to the contributors to this repository:
 
 [@dschenkelman](https://github.com/dschenkelman) - Avoid large memory allocations when doing forEach in case netmask is large (e.g. /8) #34
 
-[@sickcodes](https://github.com/sickcodes), [@kaoudis](https://github.com/kaoudis), [@Koroeskohr](https://github.com/Koroeskohr), [@nicksahler](https://github.com/nicksahler) - harden error handling, add a few more tests, and include CREDITS.md #36
+[@sickcodes](https://github.com/sickcodes), [@kaoudis](https://github.com/kaoudis), [@Koroeskohr](https://github.com/Koroeskohr), [@nicksahler](https://github.com/nicksahler) - adds CREDITS, plus mocha tests for transpiled node #36
