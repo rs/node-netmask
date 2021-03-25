@@ -32,6 +32,16 @@ vows.describe('IPs with bytes greater than 255')
         'garbage': shouldFailWithError 'Invalid net'
     .export(module)
 
+vows.describe('Invalid IP format')
+    .addBatch
+        ' 1.2.3.4': shouldFailWithError 'Invalid net'
+        '1. 2.3.4': shouldFailWithError 'Invalid net'
+        '1.2. 3.4': shouldFailWithError 'Invalid net'
+        '1.2.3. 4': shouldFailWithError 'Invalid net'
+        '1.2.3.4 ': shouldFailWithError 'Invalid net'
+        '1 .2.3.4': shouldFailWithError 'Invalid net'
+    .export(module)
+
 vows.describe('Ranges that are a power-of-two big, but are not legal blocks')
     .addBatch
         '218.0.0.0/221.255.255.255': shouldFailWithError 'Invalid mask'

@@ -16,6 +16,8 @@ ip2long = (ip) ->
             else
                 # make sure 0 prefixed bytes are parsed as octal
                 byte = parseInt(byte, 8)
+        else if byte and (byte[0] == ' ' or byte[byte.length-1] == ' ')
+            throw new Error('Invalid IP')
         else
             byte = parseInt(byte, 10)
         if isNaN(byte) then throw new Error("Invalid byte: #{byte}")
@@ -24,7 +26,6 @@ ip2long = (ip) ->
     while b.length < 4
         b.unshift(0)
     return (b[0] << 24 | b[1] << 16 | b[2] << 8 | b[3]) >>> 0
-
 
 class Netmask
     constructor: (net, mask) ->
