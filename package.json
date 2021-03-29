@@ -2,7 +2,7 @@
     "author": "Olivier Poitrey <rs@rhapsodyk.net>",
     "name": "netmask",
     "description": "Parse and lookup IP network blocks",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "homepage": "https://github.com/rs/node-netmask",
     "bugs": "https://github.com/rs/node-netmask/issues",
     "license": "MIT",
