@@ -23,6 +23,13 @@ ip2long = (ip) ->
         b.unshift(0)
     return (b[0] << 24 | b[1] << 16 | b[2] << 8 | b[3]) >>> 0
 
+chr = (b) ->
+    return b.charCodeAt(0)
+
+chr0 = chr('0')
+chra = chr('a')
+chrA = chr('A')
+
 atob = (s) ->
     n = 0
     base = 10
@@ -37,15 +44,14 @@ atob = (s) ->
             base = 8
             dmax = '7'
     start = i
-    chr = (b) -> return b.charCodeAt(0)
     while s.length > 0
         if '0' <= s[i] and s[i] <= dmax
-            n = n*base + (chr(s[i])-chr('0'))
+            n = n*base + (chr(s[i])-chr0)
         else if base == 16
             if 'a' <= s[i] and s[i] <= 'f'
-                n = n*base + (10+chr(s[i])-chr('a'))
+                n = n*base + (10+chr(s[i])-chra)
             else if 'A' <= s[i] and s[i] <= 'F'
-                n = n*base + (10+chr(s[i])-chr('A'))
+                n = n*base + (10+chr(s[i])-chrA)
             else
                 break
         else
