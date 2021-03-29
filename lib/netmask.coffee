@@ -19,9 +19,29 @@ ip2long = (ip) ->
         b.push(n)
     if ip.length != 0
         throw new Error('Invalid IP')
-    while b.length < 4
-        b.unshift(0)
-    return (b[0] << 24 | b[1] << 16 | b[2] << 8 | b[3]) >>> 0
+    switch b.length
+        when 1
+            # Long input notation
+            if b[0] > 0xFFFFFFFF
+                throw new Error('Invalid IP')
+            return b[0] >>> 0
+        when 2
+            # Class A notation
+            if b[0] > 0xFF or b[1] > 0xFFFFFF
+                throw new Error('Invalid IP')
+            return (b[0] << 24 | b[1]) >>> 0
+        when 3
+            # Class B notation
+            if b[0] > 0xFF or b[1] > 0xFF or b[2] > 0xFFFF
+                throw new Error('Invalid IP')
+            return (b[0] << 24 | b[1] << 16 | b[2]) >>> 0
+        when 4
+            # Dotted quad notation 
+            if b[0] > 0xFF or b[1] > 0xFF or b[2] > 0xFF or b[3] > 0xFF
+                throw new Error('Invalid IP')
+            return (b[0] << 24 | b[1] << 16 | b[2] << 8 | b[3]) >>> 0
+        else
+            throw new Error('Invalid IP')
 
 chr = (b) ->
     return b.charCodeAt(0)
@@ -46,18 +66,18 @@ atob = (s) ->
     start = i
     while s.length > 0
         if '0' <= s[i] and s[i] <= dmax
-            n = n*base + (chr(s[i])-chr0)
+            n = (n*base + (chr(s[i])-chr0)) >>> 0
         else if base == 16
             if 'a' <= s[i] and s[i] <= 'f'
-                n = n*base + (10+chr(s[i])-chra)
+                n = (n*base + (10+chr(s[i])-chra)) >>> 0
             else if 'A' <= s[i] and s[i] <= 'F'
-                n = n*base + (10+chr(s[i])-chrA)
+                n = (n*base + (10+chr(s[i])-chrA)) >>> 0
             else
                 break
         else
             break
-        if n > 0xFF
-            throw new Error('byte overflow')
+        if n > 0xFFFFFFFF
+            throw new Error('too large')
         i++
     if i == start
         throw new Error('empty octet')

@@ -26,11 +26,11 @@ vows.describe('IPs with bytes greater than 255')
         '209.500.70.33/19': shouldFailWithError 'Invalid net'
         '140.999.82': shouldFailWithError 'Invalid net'
         '899.174': shouldFailWithError 'Invalid net'
-        '900': shouldFailWithError 'Invalid net'
-        '209.157.300/19': shouldFailWithError 'Invalid net'
+        '209.157.65536/19': shouldFailWithError 'Invalid net'
         '209.300.64.0.10': shouldFailWithError 'Invalid net'
         'garbage': shouldFailWithError 'Invalid net'
     .export(module)
+    
 
 vows.describe('Invalid IP format')
     .addBatch
