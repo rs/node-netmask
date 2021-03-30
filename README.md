@@ -6,39 +6,42 @@ The Netmask class parses and understands IPv4 CIDR blocks so they can be explore
 Synopsis
 --------
 
-    var Netmask = require('netmask').Netmask
+```js
+var Netmask = require('netmask').Netmask
 
-    var block = new Netmask('10.0.0.0/12');
-    block.base;                     // 10.0.0.0
-    block.mask;                     // 255.240.0.0
-    block.bitmask;                  // 12
-    block.hostmask;                 // 0.15.255.255
-    block.broadcast;                // 10.15.255.255
-    block.size;                     // 1048576
-    block.first;                    // 10.0.0.1
-    block.last;                     // 10.15.255.254
+var block = new Netmask('10.0.0.0/12');
+block.base;                     // 10.0.0.0
+block.mask;                     // 255.240.0.0
+block.bitmask;                  // 12
+block.hostmask;                 // 0.15.255.255
+block.broadcast;                // 10.15.255.255
+block.size;                     // 1048576
+block.first;                    // 10.0.0.1
+block.last;                     // 10.15.255.254
 
-    block.contains('10.0.8.10');    // true
-    block.contains('10.8.0.10');    // true
-    block.contains('192.168.1.20'); // false
+block.contains('10.0.8.10');    // true
+block.contains('10.8.0.10');    // true
+block.contains('192.168.1.20'); // false
 
-    block.forEach(function(ip, long, index));
+block.forEach(function(ip, long, index));
 
-    block.next()                    // Netmask('10.16.0.0/12')
+block.next()                    // Netmask('10.16.0.0/12')
+```
 
 Constructing
 ------------
 
 Netmask objects are created with an IP address and optionally a mask. There are many forms that are recognized:
 
-    '216.240.32.0/24'               // The preferred form.
-    '216.240.32.0/255.255.255.0'
-    '216.240.32.0', '255.255.255.0'
-    '216.240.32.0', 0xffffff00
-    '216.240.32.4'                  // A /32 block.
-    '0330.0360.040.04'              // Octal form
-    '0xd8.0xf0.0x20.0x4'            // Hex form
-
+```
+'216.240.32.0/24'               // The preferred form.
+'216.240.32.0/255.255.255.0'
+'216.240.32.0', '255.255.255.0'
+'216.240.32.0', 0xffffff00
+'216.240.32.4'                  // A /32 block.
+'0330.0360.040.04'              // Octal form
+'0xd8.0xf0.0x20.0x4'            // Hex form
+```
 
 API
 ---
