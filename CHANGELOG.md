@@ -6,7 +6,6 @@
 
 * Rewrite byte parsing without using JS `parseInt()`([commit](https://github.com/rs/node-netmask/commit/3f19a056c4eb808ea4a29f234274c67bc5a848f4))
   * This is [CVE-2021-29418](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-29418).
-  * See also the [npm advisory](https://www.npmjs.com/advisories/1658)
 
 ### Bugfixes
 
