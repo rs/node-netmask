@@ -1,5 +1,13 @@
 ## v2.0.1 (Mar 29, 2021)
 
+### IMPORTANT: Security Fix
+
+> This version contains an important security fix. If you are using netmask `<=2.0.0`, please upgrade to `2.0.1` or above.
+
+* Rewrite byte parsing without using JS `parseInt()`([commit](https://github.com/rs/node-netmask/commit/3f19a056c4eb808ea4a29f234274c67bc5a848f4))
+  * This is [CVE-2021-29418](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-29418).
+  * See also the [npm advisory](https://www.npmjs.com/advisories/1658)
+
 ### Bugfixes
 
 * Add checks on spaces before and after bytes
@@ -7,7 +15,6 @@
 
 ### Internal Changes
 
-* Rewrite byte parsing without using JS `parseInt()`
 * Avoid some useless memory allocations
 * New Mocha testing suite, thanks @kaoudis [#36](https://github.com/rs/node-netmask/pull/36)
 
