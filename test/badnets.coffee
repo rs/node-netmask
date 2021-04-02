@@ -42,6 +42,7 @@ vows.describe('Invalid IP format')
         '1.2.3.4 ': shouldFailWithError 'Invalid net'
         '1 .2.3.4': shouldFailWithError 'Invalid net'
         '018.0.0.0': shouldFailWithError 'Invalid net'
+        '08.0.0.0': shouldFailWithError 'Invalid net'
         '0xfg.0.0.0': shouldFailWithError 'Invalid net'
     .export(module)
 

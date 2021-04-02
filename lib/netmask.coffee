@@ -57,14 +57,14 @@ atob = (s) ->
     i = 0
     if s.length > 1 and s[i] == '0'
         if s[i+1] == 'x' or s[i+1] == 'X'
-            i+=2
+            i += 2
             base = 16
-        else if '0' <= s[i+1] and s[i+1] <= '7'
+        else if '0' <= s[i+1] and s[i+1] <= '9'
             i++
             base = 8
             dmax = '7'
     start = i
-    while s.length > 0
+    while i < s.length
         if '0' <= s[i] and s[i] <= dmax
             n = (n*base + (chr(s[i])-chr0)) >>> 0
         else if base == 16
