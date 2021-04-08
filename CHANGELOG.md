@@ -1,3 +1,9 @@
+## v2.0.2 (Apr 2, 2021)
+
+### Bugfixes
+
+* Fix `08` parsed as decimal while `018` rejected. ([commit](https://github.com/rs/node-netmask/commit/50a0053bd869b72313cc96ab73108bb83079c3f5))
+
 ## v2.0.1 (Mar 29, 2021)
 
 ### IMPORTANT: Security Fix
