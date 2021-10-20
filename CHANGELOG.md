@@ -27,7 +27,7 @@
 
 ### Breaking Change
 
-Previous API was treating IPs with less than for bytes as IP with a
+Previous API was treating IPs with less than four bytes as IP with a
 netmask of the size of the provided bytes (1=8, 2=16, 3=24) and was
 interpreting the IP as if it was completed with 0s on the right side.
 
