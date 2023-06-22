@@ -1,14 +1,14 @@
 {
     "author": "Olivier Poitrey <rs@rhapsodyk.net>",
-    "name": "netmask",
+    "name": "@cloudnutter/netmask",
     "description": "Parse and lookup IP network blocks",
-    "version": "2.0.2",
+    "version": "2.1.0",
     "homepage": "https://github.com/rs/node-netmask",
     "bugs": "https://github.com/rs/node-netmask/issues",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git://github.com/rs/node-netmask.git"
+        "url": "git://github.com/cloudnutter/node-netmask.git"
     },
     "keywords": [
         "net",
@@ -32,5 +32,8 @@
         "coffee-script": ">=1.2.0",
         "mocha": "^8.3.2",
         "vows": "*"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
     }
 }
