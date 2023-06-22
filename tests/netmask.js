@@ -31,6 +31,38 @@ describe('Netmask', () => {
     });
   });
 
+  describe('can describe a block', () => {
+    let block = new Netmask('10.1.2.0/24');
+
+    it('should have a specific size', () => {
+      assert.equal(block.size, 256);
+    });
+
+    it('should have a specific base', () => {
+      assert.equal(block.base, '10.1.2.0');
+    });
+
+    it('should have a specific mask', () => {
+      assert.equal(block.mask, '255.255.255.0');
+    });
+
+    it('should have a specific host mask', () => {
+      assert.equal(block.hostmask, '0.0.0.255');
+    });
+
+    it('should have a specific first ip', () => {
+      assert.equal(block.first, '10.1.2.1');
+    });
+
+    it('should have a specific last ip', () => {
+      assert.equal(block.last, '10.1.2.254');
+    });
+
+    it('should have a specific broadcast', () => {
+      assert.equal(block.broadcast, '10.1.2.255');
+    });
+  });
+
   describe('when presented with an octet which is not a number', () => {
     let block = new Netmask('192.168.0.0/29')
 
