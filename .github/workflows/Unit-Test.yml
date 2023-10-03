@@ -1,0 +1,30 @@
+name: Unit Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Source Code
+      uses: actions/checkout@v4
+
+    - name: Set up the Node.JS Runtime
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install Dependencies
+      run: npm install
+      
+    - name: Build Project
+      run: npm run-script prepublish
+
+    - name: Run the Unit Tests
+      run: npm run-script test
