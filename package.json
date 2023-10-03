@@ -30,7 +30,7 @@
     },
     "devDependencies": {
         "coffee-script": ">=1.2.0",
-        "mocha": "^8.3.2",
+        "mocha": "^10.2.0",
         "vows": "*"
     }
 }
