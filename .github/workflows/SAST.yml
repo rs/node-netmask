@@ -37,6 +37,9 @@ jobs:
           # Prefix the list here with "+" to use these queries and those in the config file.
           queries: +security-extended,security-and-quality
 
+      - name: Install Dependencies
+        run: npm install
+
       - name: Build Project
         run: npm run-script prepublish
 
