@@ -157,6 +157,11 @@ class Netmask
           long++
         return
 
+    slice: (start, end) ->
+        ips = []
+        @forEach((ip) -> ips.push(ip))
+        return ips.slice(start, end)
+
     # Returns the complete netmask formatted as `base/bitmask`
     toString: ->
         return @base + "/" + @bitmask

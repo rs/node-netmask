@@ -132,4 +132,20 @@ describe('Netmask', () => {
       });
     });
   });
+
+  describe('can return range of IPs from block', () => {
+    let block = new Netmask('10.1.2.0/24');
+
+    it('should be able to return the first N IPs', () => {
+      assert.deepEqual(block.slice(0, 3), ['10.1.2.1', '10.1.2.2', '10.1.2.3']);
+    });
+
+    it('should be able to return the last N IPs', () => {
+      assert.deepEqual(block.slice(block.size - 5, block.size - 1), ['10.1.2.252', '10.1.2.253', '10.1.2.254']);
+    });
+
+    it('should be able to return a range of IPs', () => {
+      assert.deepEqual(block.slice(2, 5), ['10.1.2.3', '10.1.2.4', '10.1.2.5']);
+    });
+  });
 });
