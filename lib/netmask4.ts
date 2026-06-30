@@ -150,7 +150,7 @@ class Netmask4Impl {
             throw new Error("Invalid net address: " + net);
         }
 
-        if (!(this.bitmask <= 32)) {
+        if (isNaN(this.bitmask) || this.bitmask < 0 || this.bitmask > 32) {
             throw new Error("Invalid mask for ip4: " + maskStr);
         }
 

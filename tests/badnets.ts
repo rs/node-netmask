@@ -45,3 +45,8 @@ describe('Ranges that are a power-of-two big, but are not legal blocks', () => {
     shouldFailWithError('218.0.0.0/221.255.255.255', 'Invalid mask');
     shouldFailWithError('218.0.0.4/218.0.0.11', 'Invalid mask');
 });
+
+describe('Negative CIDR prefixes', () => {
+    shouldFailWithError('192.168.1.0/-1', 'Invalid mask');
+    shouldFailWithError('10.0.0.0/-5', 'Invalid mask');
+});
