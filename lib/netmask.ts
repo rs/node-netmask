@@ -62,7 +62,17 @@ class Netmask {
         if (ip instanceof Netmask) {
             return this.contains(ip.base) && this.contains(ip.broadcast || ip.last);
         }
-        // Plain IP string — delegate to impl
+        // Plain IP string. Reject a different-family address before delegating:
+        // the impl parser throws on an other-family address instead of returning a
+        // boolean, which would crash callers using contains() as a predicate (#62).
+        // Detect the address family the same way the constructor does — a ':' means
+        // IPv6 — and avoid the security-sensitive parsing internals entirely.
+        const addrIsV6 = (ip as string).indexOf(':') !== -1;
+        const rangeIsV6 = this._impl instanceof Netmask6Impl;
+        if (addrIsV6 !== rangeIsV6) {
+            return false;
+        }
+        // Same-family plain IP string — delegate to impl
         return this._impl.contains(ip as string);
     }
 
