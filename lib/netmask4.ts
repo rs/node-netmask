@@ -54,6 +54,15 @@ function parseNum(s: string): [number, number] {
     return [n >>> 0, i];
 }
 
+// Prefix lengths must be plain decimal integers. parseInt() would accept
+// '24abc' as 24, '0x10' as 0 and 0.1 as 0. NaN makes the caller throw.
+function parsePrefixLength(value: string | number): number {
+    if (typeof value === 'number') {
+        return Number.isInteger(value) ? value : NaN;
+    }
+    return /^[0-9]+$/.test(value) ? parseInt(value, 10) : NaN;
+}
+
 function ip2long(ip: string): number {
     const b: number[] = [];
     for (let i = 0; i <= 3; i++) {
@@ -138,7 +147,7 @@ class Netmask4Impl {
                 }
             }
         } else if (maskStr || maskStr === 0) {
-            this.bitmask = parseInt(maskStr as string, 10);
+            this.bitmask = parsePrefixLength(maskStr);
             this.maskLong = 0;
             if (this.bitmask > 0) {
                 this.maskLong = (0xffffffff << (32 - this.bitmask)) >>> 0;
@@ -197,4 +206,4 @@ class Netmask4Impl {
     }
 }
 
-export { ip2long, long2ip, Netmask4Impl };
+export { ip2long, long2ip, parsePrefixLength, Netmask4Impl };

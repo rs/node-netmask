@@ -1,4 +1,4 @@
-import { ip2long } from './netmask4';
+import { ip2long, parsePrefixLength } from './netmask4';
 
 const MAX_IPV6 = (1n << 128n) - 1n;
 
@@ -128,11 +128,11 @@ class Netmask6Impl {
         if (typeof net !== 'string') {
             throw new Error("Missing `net' parameter");
         }
-        let prefixLen: number | undefined = mask;
+        let prefixLen: number | undefined = mask === undefined || mask === null ? mask : parsePrefixLength(mask);
         if (prefixLen === undefined || prefixLen === null) {
             const slashIdx = net.indexOf('/');
             if (slashIdx !== -1) {
-                prefixLen = parseInt(net.substring(slashIdx + 1), 10);
+                prefixLen = parsePrefixLength(net.substring(slashIdx + 1));
                 net = net.substring(0, slashIdx);
             } else {
                 prefixLen = 128;

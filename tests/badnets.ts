@@ -194,3 +194,29 @@ describe('In-range IPv4 edge values', () => {
         assert.strictEqual(new Netmask('255.255.255.255/32').contains('4294967295'), true);
     });
 });
+
+describe('Prefix lengths that are not plain decimal integers (#50)', () => {
+    shouldFailWithError('1.2.3.4/24abc', 'Invalid mask');
+    shouldFailWithError('1.2.3.4/ 24', 'Invalid mask');
+    shouldFailWithError('1.2.3.4/0x10', 'Invalid mask');
+    shouldFailWithError('1.2.3.4/+8', 'Invalid mask');
+    shouldFailWithError('1.2.3.4/1e1', 'Invalid mask');
+    shouldFailWithError('2001:db8::/64x', 'Invalid mask');
+    shouldFailWithError('2001:db8::/0x10', 'Invalid mask');
+    shouldFailWithError('2001:db8::/ 64', 'Invalid mask');
+    shouldFailWithError('2001:db8::/', 'Invalid mask');
+
+    it('rejects a fractional mask argument', () => {
+        assert.throws(() => new Netmask('1.2.3.4', 0.1), /Invalid mask/);
+        assert.throws(() => new Netmask('1.2.3.4', 24.5), /Invalid mask/);
+        assert.throws(() => new Netmask('2001:db8::', 64.5), /Invalid mask/);
+    });
+
+    it('still accepts integer masks given as numbers or strings', () => {
+        assert.strictEqual(new Netmask('1.2.3.4', 24).toString(), '1.2.3.0/24');
+        assert.strictEqual(new Netmask('1.2.3.4', '24').toString(), '1.2.3.0/24');
+        assert.strictEqual(new Netmask('1.2.3.4/024').toString(), '1.2.3.0/24');
+        assert.strictEqual(new Netmask('2001:db8::1', 64).toString(), '2001:db8::/64');
+        assert.strictEqual(new Netmask('2001:db8::1/0').toString(), '::/0');
+    });
+});
