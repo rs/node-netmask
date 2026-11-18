@@ -28,12 +28,12 @@ function parseNum(s: string): [number, number] {
     const start = i;
     while (i < s.length) {
         if ('0' <= s[i] && s[i] <= dmax) {
-            n = (n * base + (s.charCodeAt(i) - chr0)) >>> 0;
+            n = n * base + (s.charCodeAt(i) - chr0);
         } else if (base === 16) {
             if ('a' <= s[i] && s[i] <= 'f') {
-                n = (n * base + (10 + s.charCodeAt(i) - chra)) >>> 0;
+                n = n * base + (10 + s.charCodeAt(i) - chra);
             } else if ('A' <= s[i] && s[i] <= 'F') {
-                n = (n * base + (10 + s.charCodeAt(i) - chrA)) >>> 0;
+                n = n * base + (10 + s.charCodeAt(i) - chrA);
             } else {
                 break;
             }
