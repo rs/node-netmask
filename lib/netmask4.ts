@@ -27,13 +27,16 @@ function parseNum(s: string): [number, number] {
     }
     const start = i;
     while (i < s.length) {
+        // Keep the full integer while scanning. Truncating with `>>> 0` on
+        // every digit wraps modulo 2^32, so the range check below never sees
+        // a value above 0xFFFFFFFF.
         if ('0' <= s[i] && s[i] <= dmax) {
-            n = (n * base + (s.charCodeAt(i) - chr0)) >>> 0;
+            n = n * base + (s.charCodeAt(i) - chr0);
         } else if (base === 16) {
             if ('a' <= s[i] && s[i] <= 'f') {
-                n = (n * base + (10 + s.charCodeAt(i) - chra)) >>> 0;
+                n = n * base + (10 + s.charCodeAt(i) - chra);
             } else if ('A' <= s[i] && s[i] <= 'F') {
-                n = (n * base + (10 + s.charCodeAt(i) - chrA)) >>> 0;
+                n = n * base + (10 + s.charCodeAt(i) - chrA);
             } else {
                 break;
             }
@@ -48,7 +51,7 @@ function parseNum(s: string): [number, number] {
     if (i === start) {
         throw new Error('empty octet');
     }
-    return [n, i];
+    return [n >>> 0, i];
 }
 
 function ip2long(ip: string): number {
