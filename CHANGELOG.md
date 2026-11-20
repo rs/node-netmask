@@ -1,3 +1,9 @@
+## v2.1.2 (Nov 20, 2026)
+
+### Bugfixes
+
+* Reject IPv4 numeric components larger than 2^32−1 instead of wrapping them modulo 2^32. Decimal, hexadecimal, octal, and every dotted form are checked in `ip2long` and `Netmask`. ([#66](https://github.com/rs/node-netmask/pull/66))
+
 ## v2.0.2 (Apr 2, 2021)
 
 ### Bugfixes
